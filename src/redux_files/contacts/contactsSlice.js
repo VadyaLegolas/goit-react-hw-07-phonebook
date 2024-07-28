@@ -9,7 +9,7 @@ import {
   handlePending,
   handleRejected,
 } from './contactsFunctions';
-import { arrayThunks } from './arrayThunks';
+import { arrayThunksTypes } from './arrayThunks';
 
 const STATUS = {
   PENDING: 'pending',
@@ -27,9 +27,9 @@ export const contactsSlice = createSlice({
       .addCase(fetchContacts.fulfilled, handleFulfilledGet)
       .addCase(deleteContact.fulfilled, handleFulfilledDelete)
       .addCase(addContact.fulfilled, handleFulfilledAdd)
-      .addMatcher(isAnyOf(...arrayThunks(PENDING)), handlePending)
-      .addMatcher(isAnyOf(...arrayThunks(REJECTED)), handleRejected)
-      .addMatcher(isAnyOf(...arrayThunks(FULFILLED)), handleFulfilled);
+      .addMatcher(isAnyOf(...arrayThunksTypes(PENDING)), handlePending)
+      .addMatcher(isAnyOf(...arrayThunksTypes(REJECTED)), handleRejected)
+      .addMatcher(isAnyOf(...arrayThunksTypes(FULFILLED)), handleFulfilled);
   },
 });
 
