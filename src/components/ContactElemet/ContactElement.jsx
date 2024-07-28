@@ -11,7 +11,7 @@ export const ContactElement = ({ id, name, phone }) => {
     <ListItem>
       <Div>
         {name}: <b>{phone}</b>
-        <Button onClick={handleDelete}>Delete </Button>
+        <Button onClick={handleDelete}>Delete <LuTrash2 /></Button>
       </Div>
     </ListItem>
   );
