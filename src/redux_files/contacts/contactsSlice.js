@@ -10,6 +10,12 @@ import {
   handleRejected,
 } from './contactsFunctions';
 
+const arrayThunks = [addContact, deleteContact, fetchContacts]
+const arrayTypes = (type) => {
+  arrayThunks.map(thunk => thunk[type])
+}
+
+
 export const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
@@ -21,24 +27,18 @@ export const contactsSlice = createSlice({
       .addCase(addContact.fulfilled, handleFulfilledAdd)
       .addMatcher(
         isAnyOf(
-          fetchContacts.pending,
-          deleteContact.pending,
-          addContact.pending
+          ...arrayThunks('pending')
         ),
         handlePending
       )
       .addMatcher(
         isAnyOf(
-          fetchContacts.rejected,
-          deleteContact.rejected,
-          addContact.rejected
+          ...arrayThunks('rejected'),
         ),
         handleRejected
       ).addMatcher(
         isAnyOf(
-          fetchContacts.fulfilled,
-          deleteContact.fulfilled,
-          addContact.fulfilled
+          ...arrayThunks('fulfilled'),
         ),
         handleFulfilled
       );
