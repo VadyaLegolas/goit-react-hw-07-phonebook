@@ -1,5 +1,3 @@
-import { toast } from 'react-toastify';
-
 export const handlePending = state => {
   state.isLoading = true;
 };
