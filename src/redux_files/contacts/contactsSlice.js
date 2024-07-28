@@ -5,7 +5,6 @@ import { addContact, deleteContact, fetchContacts } from './operations';
 
 const handlePending = state => {
   state.isLoading = true;
-  state.error = null;
 };
 
 const handleDeleteContact = (state, action) => {
@@ -29,6 +28,7 @@ const handleAddContact = (state, action) => {
 };
 const handleFulfilled = (state, action) => {
   state.isLoading = false;
+  state.error = null;
   state.items = action.payload;
 };
 
@@ -40,36 +40,7 @@ const handleRejected = (state, action) => {
 export const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
-  // reducers: {
-  //   addContact: {
-  //     reducer: (state, action) => {
-  //       const { name } = action.payload;
-  //       const normalizeName = name.toLowerCase();
-
-  //       if (state.find(({ name }) => name.toLowerCase() === normalizeName)) {
-  //         toast.error(`"${name}" is already in contacts`, {
-  //           position: 'top-center',
-  //           autoClose: 3000,
-  //           theme: 'colored',
-  //         });
-  //       } else {
-  //         state.push(action.payload);
-  //       }
-  //     },
-
-  //     prepare: data => {
-  //       const id = nanoid();
-  //       return { payload: { id, ...data } };
-  //     },
-  //   },
-
-  //   deleteContact: {
-  //     reducer: (state, action) => {
-  //       return state.filter(contact => contact.id !== action.payload.id);
-  //     },
-  //     prepare: id => ({ payload: { id } }),
-  //   },
-  // },
+  
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.pending, handlePending)
@@ -85,5 +56,3 @@ export const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-
-// export const { addContact } = contactsSlice.actions;
