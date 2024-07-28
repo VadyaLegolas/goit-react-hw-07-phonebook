@@ -28,11 +28,12 @@ export const ContactForm = ({ onSubmit }) => {
         autoClose: 3000,
         theme: 'colored',
       });
-      return
-    }else{dispatch(addContact({ name, phone }));
-    setName('');
-    setPhone('');}
-    
+      return;
+    } else {
+      dispatch(addContact({ name, phone }));
+      setName('');
+      setPhone('');
+    }
   };
 
   return (
