@@ -11,24 +11,25 @@ import {
 } from './contactsFunctions';
 import { arrayThunks } from './arrayThunks';
 
-const  STATUS = {
+const STATUS = {
   PENDING: 'pending',
   FULFILLED: 'fulfilled',
   REJECTED: 'rejected',
-}
+};
 
 export const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
 
   extraReducers: builder => {
+    const { PENDING, FULFILLED, REJECTED } = STATUS;
     builder
       .addCase(fetchContacts.fulfilled, handleFulfilledGet)
       .addCase(deleteContact.fulfilled, handleFulfilledDelete)
       .addCase(addContact.fulfilled, handleFulfilledAdd)
-      .addMatcher(isAnyOf(...arrayThunks(STATUS.PENDING)), handlePending)
-      .addMatcher(isAnyOf(...arrayThunks(STATUS.REJECTED)), handleRejected)
-      .addMatcher(isAnyOf(...arrayThunks(STATUS.FULFILLED)), handleFulfilled);
+      .addMatcher(isAnyOf(...arrayThunks(PENDING)), handlePending)
+      .addMatcher(isAnyOf(...arrayThunks(REJECTED)), handleRejected)
+      .addMatcher(isAnyOf(...arrayThunks(FULFILLED)), handleFulfilled);
   },
 });
 
