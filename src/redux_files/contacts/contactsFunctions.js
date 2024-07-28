@@ -16,7 +16,6 @@ export const handleAddContact = (state, { payload }) => {
   const normalizeName = name.toLowerCase();
 
   if (state.items.find(({ name }) => name.toLowerCase() === normalizeName)) {
-    console.log("Already in contacts");
     toast.error(`"${name}" is already in contacts`, {
       position: 'top-center',
       autoClose: 3000,
