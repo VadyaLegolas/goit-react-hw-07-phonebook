@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { Button, Div, ListItem } from './ContactElement.styled';
 import { deleteContact } from 'redux_files/contacts/operations';
+import { LuTrash2 } from "react-icons/lu";
 
 export const ContactElement = ({ id, name, phone }) => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ export const ContactElement = ({ id, name, phone }) => {
     <ListItem>
       <Div>
         {name}: <b>{phone}</b>
-        <Button onClick={handleDelete}>Delete</Button>
+        <Button onClick={handleDelete}>Delete </Button>
       </Div>
     </ListItem>
   );
