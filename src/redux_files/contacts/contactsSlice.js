@@ -1,46 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { contactsInitialState } from './initialState';
-import { toast } from 'react-toastify';
 import { addContact, deleteContact, fetchContacts } from './operations';
-
-const handlePending = state => {
-  state.isLoading = true;
-};
-
-const handleDeleteContact = (state, action) => {
-  state.isLoading = false;
-  state.items = state.items.filter(contact => contact.id !== action.payload.id);
-};
-
-const handleAddContact = (state, action) => {
-  state.isLoading = false;
-  const { name } = action.payload;
-  const normalizeName = name.toLowerCase();
-  if (state.items.find(({ name }) => name.toLowerCase() === normalizeName)) {
-    toast.error(`"${name}" is already in contacts`, {
-      position: 'top-center',
-      autoClose: 3000,
-      theme: 'colored',
-    });
-  } else {
-    state.items.push(action.payload);
-  }
-};
-const handleFulfilled = (state, action) => {
-  state.isLoading = false;
-  state.error = null;
-  state.items = action.payload;
-};
-
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.error.message;
-};
+import {
+  handleAddContact,
+  handleDeleteContact,
+  handleFulfilled,
+  handlePending,
+  handleRejected,
+} from './contactsFunctions';
 
 export const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
-  
+
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.pending, handlePending)

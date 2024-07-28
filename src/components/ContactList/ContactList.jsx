@@ -2,9 +2,9 @@ import { ContactElement } from 'components/ContactElemet/ContactElement';
 import { List } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getError,
-  getIsLoading,
-  getVisibleContacts,
+  selectError,
+  selectIsLoading,
+  selectVisibleContacts,
 } from 'redux_files/contacts/contactSelectors';
 import { fetchContacts } from 'redux_files/contacts/operations';
 import { useEffect } from 'react';
@@ -17,9 +17,9 @@ export const ContactList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const visibleContacts = useSelector(getVisibleContacts);
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  const visibleContacts = useSelector(selectVisibleContacts);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   return (
     <>

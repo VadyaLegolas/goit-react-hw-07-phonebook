@@ -1,12 +1,10 @@
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ContactForm } from "./ContactForm/ContactForm";
-import { ContactList } from "./ContactList/ContactList";
-import { Filter } from "./Filter/Filter";
-
+import { ContactForm } from './ContactForm/ContactForm';
+import { ContactList } from './ContactList/ContactList';
+import { Filter } from './Filter/Filter';
 
 export const App = () => {
-
   return (
     <>
       <h1>Phonebook</h1>
@@ -17,4 +15,4 @@ export const App = () => {
       <ToastContainer />
     </>
   );
-}
+};
