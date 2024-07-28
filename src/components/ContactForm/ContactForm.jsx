@@ -1,10 +1,13 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, FormContact, Input, Label } from './ContactForm.styled';
 import { useState } from 'react';
 import { addContact } from 'redux_files/contacts/operations';
+import { selectContacts } from 'redux_files/contacts/contactSelectors';
+import { toast } from 'react-toastify';
 
 export const ContactForm = ({ onSubmit }) => {
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const handleChange = ({ target: { name, value } }) => {
@@ -18,9 +21,18 @@ export const ContactForm = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addContact({ name, phone }));
+    const normalizeName = name.toLowerCase();
+    if (contacts.find(({ name }) => name.toLowerCase() === normalizeName)) {
+      toast.error(`"${name}" is already in contacts`, {
+        position: 'top-center',
+        autoClose: 3000,
+        theme: 'colored',
+      });
+      return
+    }else{dispatch(addContact({ name, phone }));
     setName('');
-    setPhone('');
+    setPhone('');}
+    
   };
 
   return (
