@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { addContact } from 'redux_files/contacts/operations';
 import { selectContacts } from 'redux_files/contacts/contactSelectors';
 import { toast } from 'react-toastify';
+import { LuBookOpenCheck } from "react-icons/lu";
 
 export const ContactForm = ({ onSubmit }) => {
   const dispatch = useDispatch();
@@ -61,7 +62,7 @@ export const ContactForm = ({ onSubmit }) => {
         />
       </Label>
 
-      <Button type="submit">Add contact</Button>
+      <Button type="submit">Add contact <LuBookOpenCheck /></Button>
     </FormContact>
   );
 };
