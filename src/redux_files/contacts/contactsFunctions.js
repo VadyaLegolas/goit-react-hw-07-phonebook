@@ -1,4 +1,5 @@
-const { toast } = require('react-toastify');
+import { toast } from "react-toastify";
+
 
 export const handlePending = state => {
   state.isLoading = true;
@@ -15,6 +16,7 @@ export const handleAddContact = (state, { payload }) => {
   const normalizeName = name.toLowerCase();
 
   if (state.items.find(({ name }) => name.toLowerCase() === normalizeName)) {
+    console.log("Already in contacts");
     toast.error(`"${name}" is already in contacts`, {
       position: 'top-center',
       autoClose: 3000,
