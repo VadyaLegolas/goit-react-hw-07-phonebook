@@ -1,27 +1,27 @@
 import { useDispatch } from 'react-redux';
 import { Button, FormContact, Input, Label } from './ContactForm.styled';
 import { useState } from 'react';
-import { addContact } from '../../redux/contacts/contactsSlice';
+import { addContact } from 'redux_files/contacts/operations';
 
 
 export const ContactForm = ({ onSubmit }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
   const handleChange = ({ target: { name, value } }) => {
     if (name === 'name') {
       setName(value);
     }
-    if (name === 'number') {
-      setNumber(value);
+    if (name === 'phone') {
+      setPhone(value);
     }
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addContact({name, number}));
+    dispatch(addContact({name, phone}));
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -42,8 +42,8 @@ export const ContactForm = ({ onSubmit }) => {
         Number
         <Input
           type="tel"
-          name="number"
-          value={number}
+          name="phone"
+          value={phone}
           required
           onChange={handleChange}
         />
